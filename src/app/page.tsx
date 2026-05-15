@@ -1,3 +1,5 @@
+import Image from 'next/image';
+
 export default function Home() {
   return (
     <div className="bg-[#0A0908] text-[#e6e1df] min-h-screen relative overflow-x-hidden flex flex-col">
@@ -8,8 +10,11 @@ export default function Home() {
       <nav className="bg-[#0A0908]/80 backdrop-blur-md sticky top-0 w-full z-50 border-b border-white/10 shadow-xl shadow-[#ffb596]/5">
         <div className="flex justify-between items-center max-w-[1200px] mx-auto px-6 md:px-12 h-20">
           {/* Brand */}
-          <div className="text-2xl md:text-4xl font-bold tracking-tight text-[#e6e1df]">
-            Haven
+          <div className="flex items-center gap-3">
+            <Image src="/logo.png" alt="Haven Logo" width={48} height={48} className="w-10 h-10 md:w-12 md:h-12 object-contain" />
+            <div className="text-2xl md:text-4xl font-bold tracking-tight text-[#e6e1df]">
+              Haven
+            </div>
           </div>
           {/* Desktop Nav */}
           <div className="hidden md:flex items-center gap-12">
