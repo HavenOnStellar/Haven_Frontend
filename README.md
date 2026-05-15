@@ -1,36 +1,142 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+<div align="center">
+  <h1>🛡️ Haven Frontend</h1>
+  <p><strong>The Landing Page & Client Application for Haven Protocol</strong></p>
+  <p>Next.js 16 + Stellar SDK + Tailwind CSS v4</p>
 
-## Getting Started
+  <br />
 
-First, run the development server:
+  [![License: MIT](https://img.shields.io/badge/License-MIT-48a9a6.svg)](https://opensource.org/licenses/MIT)
+  [![Built on Stellar](https://img.shields.io/badge/Built%20on-Stellar-000000.svg)](https://stellar.org)
+  [![PRs Welcome](https://img.shields.io/badge/PRs-Welcome-brightgreen.svg)](./CONTRIBUTING.md)
+</div>
+
+---
+
+## Overview
+
+This is the frontend application for [Haven Protocol](https://github.com/HavenOnStellar) — a decentralized device registry on Stellar that makes smartphone theft economically unviable.
+
+The frontend currently includes:
+- **Landing page** — dark-mode marketing page with amber/orange gradient design system
+- **Stellar SDK client stub** — typed functions ready to connect to the deployed Soroban contract
+- **Responsive design** — mobile-first layout with desktop breakpoints
+
+> **Looking for the smart contracts?** See [`haven-contracts`](https://github.com/HavenOnStellar/Haven_Contracts)
+
+---
+
+## ⚡ Quick Start
+
+### Prerequisites
+
+| Tool | Version |
+|------|---------|
+| **Node.js** | 18+ |
+| **npm** | 9+ |
+
+### Setup
 
 ```bash
+git clone https://github.com/HavenOnStellar/Haven_Frontend.git
+cd haven-frontend
+
+# Install dependencies
+npm install
+
+# Run development server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) to see the landing page.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Build
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run build
+npm start
+```
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+## 📁 Project Structure
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```
+src/
+├── app/
+│   ├── globals.css          # Design system — dark mode, amber gradients, glass panels
+│   ├── layout.tsx           # Root layout — SEO metadata, fonts, theme
+│   ├── page.tsx             # Landing page — hero, protocol flow, features
+│   └── lib/
+│       └── havenClient.ts   # Stellar SDK client stub with typed functions
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+## 🎨 Design System
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+The UI follows a **dark-mode-first** aesthetic inspired by Web3 protocol sites:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+| Token | Value | Usage |
+|-------|-------|-------|
+| Background | `#0A0908` | Page background |
+| Surface | `#141312` | Card backgrounds |
+| Primary | `#ffb596` | Accent text, icons |
+| Primary Container | `#f26411` | Buttons, active states |
+| Secondary | `#f49e00` | Status indicators, highlights |
+| On Surface | `#e6e1df` | Body text |
+| On Surface Variant | `#e1bfb2` | Secondary text |
+
+**Key effects:**
+- `glass-panel` — frosted glass cards with backdrop blur
+- `text-gradient-sunset` — amber-to-orange gradient text
+- `btn-gradient` — sunset gradient buttons
+- `hero-gradient-orb` — ambient background glow
+
+---
+
+## 🛠️ Technology Stack
+
+| Technology | Purpose |
+|-----------|---------|
+| **Next.js 16** | App Router, SSR, API routes |
+| **TypeScript** | Type safety |
+| **Tailwind CSS v4** | Utility-first styling |
+| **@stellar/stellar-sdk** | Soroban contract interaction |
+| **@stellar/freighter-api** | B2B wallet integration |
+| **Plus Jakarta Sans** | Primary typeface |
+| **Material Symbols** | Icon system |
+
+---
+
+## 🗺️ Roadmap
+
+### Current (Skeleton)
+- [x] Landing page with premium dark-mode UI
+- [x] Stellar SDK client stub
+- [x] SEO metadata and responsive design
+
+### Next Steps
+- [ ] User dashboard — device management, bounty status
+- [ ] Passkey Kit integration — biometric smart wallet onboarding
+- [ ] Vendor verification portal — public device status lookup
+- [ ] SEP-24 integration — fiat on-ramp webview for bounty funding
+- [ ] Freighter integration — B2B wallet for vendors and insurers
+- [ ] Launchtube integration — fee abstraction for gasless UX
+
+---
+
+## 🤝 Contributing
+
+The codebase is full of `// TODO:` markers — each one is a scoped contribution opportunity.
+
+```bash
+grep -rn "TODO" src/
+```
+
+See **[CONTRIBUTING.md](./CONTRIBUTING.md)** for the full guide.
+
+---
+
+<div align="center">
+  <i>Part of the <a href="https://github.com/HavenOnStellar">Haven Protocol</a> — built with ❤️ to defeat the black market.</i>
+</div>
