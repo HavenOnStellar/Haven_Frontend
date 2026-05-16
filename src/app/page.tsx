@@ -1,6 +1,11 @@
+'use client';
+
 import Image from 'next/image';
+import { useState } from 'react';
 
 export default function Home() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
   return (
     <div className="bg-[#0A0908] text-[#e6e1df] min-h-screen relative overflow-x-hidden flex flex-col">
       {/* Ambient Background Orb */}
@@ -35,12 +40,32 @@ export default function Home() {
               <span className="material-symbols-outlined text-lg">terminal</span>
               GitHub
             </a>
-            {/* Mobile Menu */}
-            <button className="md:hidden text-[#e6e1df] p-1 hover:bg-white/5 rounded-lg transition-all">
-              <span className="material-symbols-outlined">menu</span>
+            {/* Mobile Menu Button */}
+            <button
+              className="md:hidden text-[#e6e1df] p-1 hover:bg-white/5 rounded-lg transition-all active:scale-95"
+              onClick={() => setIsMenuOpen((prev) => !prev)}
+              aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
+              aria-expanded={isMenuOpen}
+              aria-controls="mobile-menu"
+            >
+              <span className="material-symbols-outlined">{isMenuOpen ? 'close' : 'menu'}</span>
             </button>
           </div>
         </div>
+
+        {isMenuOpen && (
+          <div
+            id="mobile-menu"
+            className="md:hidden bg-[#0A0908]/95 backdrop-blur-lg border-b border-white/10 animate-in fade-in slide-in-from-top-2 duration-200"
+          >
+            <div className="flex flex-col p-6 gap-4">
+              <a href="#protocol" onClick={() => setIsMenuOpen(false)} className="text-[#e1bfb2] text-lg font-medium hover:text-[#e6e1df] transition-colors">Ecosystem</a>
+              <a href="#protocol" onClick={() => setIsMenuOpen(false)} className="text-[#e1bfb2] text-lg font-medium hover:text-[#e6e1df] transition-colors">Protocol</a>
+              <a href="#scale" onClick={() => setIsMenuOpen(false)} className="text-[#e1bfb2] text-lg font-medium hover:text-[#e6e1df] transition-colors">Governance</a>
+              <a href="https://github.com/HavenOnStellar" onClick={() => setIsMenuOpen(false)} className="text-[#e1bfb2] text-lg font-medium hover:text-[#e6e1df] transition-colors">Docs</a>
+            </div>
+          </div>
+        )}
       </nav>
 
       {/* ===== HERO ===== */}
