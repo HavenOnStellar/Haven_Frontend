@@ -1,6 +1,7 @@
 'use client';
 
 import Image from 'next/image';
+import Link from 'next/link';
 import { useState } from 'react';
 
 export default function Home() {
@@ -9,7 +10,7 @@ export default function Home() {
   return (
     <div className="bg-[#0A0908] text-[#e6e1df] min-h-screen relative overflow-x-hidden flex flex-col">
       {/* Ambient Background Orb */}
-      <div className="hero-gradient-orb" />
+      <div className="hero-gradient-orb" aria-hidden="true" />
 
       {/* ===== NAVBAR ===== */}
       <nav className="bg-[#0A0908]/80 backdrop-blur-md sticky top-0 w-full z-50 border-b border-white/10 shadow-xl shadow-[#ffb596]/5">
@@ -26,6 +27,8 @@ export default function Home() {
             <a href="#protocol" className="text-[#e1bfb2] font-medium hover:text-[#e6e1df] transition-colors">Ecosystem</a>
             <a href="#protocol" className="text-[#e1bfb2] font-medium hover:text-[#e6e1df] transition-colors">Protocol</a>
             <a href="#scale" className="text-[#e1bfb2] font-medium hover:text-[#e6e1df] transition-colors">Governance</a>
+            <Link href="/verify" className="text-[#e1bfb2] font-medium hover:text-[#e6e1df] transition-colors">Verify</Link>
+            <Link href="/dashboard" className="text-[#e1bfb2] font-medium hover:text-[#e6e1df] transition-colors">Dashboard</Link>
             <a href="https://github.com/HavenOnStellar" className="text-[#e1bfb2] font-medium hover:text-[#e6e1df] transition-colors">Docs</a>
           </div>
           {/* GitHub Button */}
@@ -37,7 +40,7 @@ export default function Home() {
               className="glass-panel hover:bg-white/5 rounded-lg transition-all duration-300 px-6 py-3 text-xs font-bold uppercase tracking-[0.08em] text-[#f49e00] border-[#E85D04] flex items-center gap-2 active:scale-95"
               style={{ borderColor: '#E85D04' }}
             >
-              <span className="material-symbols-outlined text-lg">terminal</span>
+              <span className="material-symbols-outlined text-lg" aria-hidden="true">terminal</span>
               GitHub
             </a>
             {/* Mobile Menu Button */}
@@ -48,7 +51,7 @@ export default function Home() {
               aria-expanded={isMenuOpen}
               aria-controls="mobile-menu"
             >
-              <span className="material-symbols-outlined">{isMenuOpen ? 'close' : 'menu'}</span>
+              <span className="material-symbols-outlined" aria-hidden="true">{isMenuOpen ? 'close' : 'menu'}</span>
             </button>
           </div>
         </div>
@@ -62,6 +65,8 @@ export default function Home() {
               <a href="#protocol" onClick={() => setIsMenuOpen(false)} className="text-[#e1bfb2] text-lg font-medium hover:text-[#e6e1df] transition-colors">Ecosystem</a>
               <a href="#protocol" onClick={() => setIsMenuOpen(false)} className="text-[#e1bfb2] text-lg font-medium hover:text-[#e6e1df] transition-colors">Protocol</a>
               <a href="#scale" onClick={() => setIsMenuOpen(false)} className="text-[#e1bfb2] text-lg font-medium hover:text-[#e6e1df] transition-colors">Governance</a>
+              <Link href="/verify" onClick={() => setIsMenuOpen(false)} className="text-[#e1bfb2] text-lg font-medium hover:text-[#e6e1df] transition-colors">Verify</Link>
+              <Link href="/dashboard" onClick={() => setIsMenuOpen(false)} className="text-[#e1bfb2] text-lg font-medium hover:text-[#e6e1df] transition-colors">Dashboard</Link>
               <a href="https://github.com/HavenOnStellar" onClick={() => setIsMenuOpen(false)} className="text-[#e1bfb2] text-lg font-medium hover:text-[#e6e1df] transition-colors">Docs</a>
             </div>
           </div>
@@ -97,6 +102,13 @@ export default function Home() {
               className="btn-gradient text-[#581e00] rounded-lg px-10 md:px-20 py-3 text-xl font-bold shadow-lg shadow-[#f26411]/20 hover:shadow-[#f26411]/40 hover:scale-[1.02] active:scale-95 transition-all duration-300 text-center"
             >
               Start Contributing
+            </a>
+            <a
+              href="/dashboard"
+              className="glass-panel rounded-lg px-10 md:px-20 py-3 text-xl font-bold text-[#f49e00] hover:bg-white/5 active:scale-95 transition-all duration-300 text-center"
+              style={{ borderColor: '#E85D04' }}
+            >
+              View Dashboard
             </a>
             <a
               href="https://github.com/HavenOnStellar"
@@ -192,6 +204,8 @@ export default function Home() {
             Haven — The Open Source Device Registry.
           </p>
           <div className="flex flex-wrap items-center justify-center md:justify-end gap-6 md:gap-12">
+            <Link href="/dashboard" className="text-sm text-[#e1bfb2] hover:text-[#ffb596] transition-colors duration-300">Dashboard</Link>
+            <Link href="/verify" className="text-sm text-[#e1bfb2] hover:text-[#ffb596] transition-colors duration-300">Verify Device</Link>
             <a href="https://github.com/HavenOnStellar" target="_blank" rel="noopener noreferrer" className="text-sm text-[#e1bfb2] hover:text-[#ffb596] transition-colors duration-300">GitHub</a>
             <a href="https://stellar.org" target="_blank" rel="noopener noreferrer" className="text-sm text-[#e1bfb2] hover:text-[#ffb596] transition-colors duration-300">Documentation</a>
             <a href="https://stellar.org/bounties" target="_blank" rel="noopener noreferrer" className="text-sm text-[#e1bfb2] hover:text-[#ffb596] transition-colors duration-300">Stellar Bounties</a>
