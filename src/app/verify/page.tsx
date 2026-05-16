@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { getDeviceStatus, hashIMEI } from '../lib/havenClient';
+import { getDeviceStatus, hashIMEI, validateIMEI } from '../lib/havenClient';
 
 type LookupState = 'empty' | 'loading' | 'success' | 'not-found' | 'error';
 
@@ -31,9 +31,20 @@ export default function VerifyPage() {
     setErrorMessage('');
 
     try {
-      const hashedImei = /^([0-9a-fA-F]{64})$/.test(trimmed)
-        ? trimmed
-        : await hashIMEI(trimmed);
+      const isPreHashed = /^([0-9a-fA-F]{64})$/.test(trimmed);
+      let hashedImei: string;
+
+      if (isPreHashed) {
+        hashedImei = trimmed;
+      } else {
+        const validationError = validateIMEI(trimmed);
+        if (validationError) {
+          setErrorMessage(validationError);
+          setState('error');
+          return;
+        }
+        hashedImei = await hashIMEI(trimmed);
+      }
 
       const result = await getDeviceStatus(hashedImei);
 
@@ -43,8 +54,8 @@ export default function VerifyPage() {
       } else {
         setState('not-found');
       }
-    } catch {
-      setErrorMessage('Unable to reach the Stellar network. Try again later.');
+    } catch (err) {
+      setErrorMessage(err instanceof Error ? err.message : 'An unexpected error occurred.');
       setState('error');
     }
   }

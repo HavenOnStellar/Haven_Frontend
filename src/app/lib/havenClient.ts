@@ -73,8 +73,43 @@ export const HAVEN_CONTRACT_ID =
   'CAT2TDBXGW6GETW52MQB725PLWN2CBVO3YSKLHRA7SRN6FC';
 
 // ---------------------------------------------------------------------------
-// IMEI Hashing (Client-Side Utility)
+// IMEI Validation & Hashing (Client-Side Utility)
 // ---------------------------------------------------------------------------
+
+/**
+ * Validate an IMEI number.
+ *
+ * Checks that the input is exactly 15 digits and passes the Luhn checksum.
+ *
+ * @param imei - The raw IMEI string to validate
+ * @returns true if the IMEI is valid, false otherwise
+ */
+export function isValidIMEI(imei: string): boolean {
+  if (!/^\d{15}$/.test(imei)) return false;
+
+  let sum = 0;
+  for (let i = 0; i < 15; i++) {
+    let digit = parseInt(imei[i], 10);
+    if (i % 2 !== 0) {
+      digit *= 2;
+      if (digit > 9) digit -= 9;
+    }
+    sum += digit;
+  }
+  return sum % 10 === 0;
+}
+
+/**
+ * Returns a human-readable validation error for an invalid IMEI, or null if valid.
+ *
+ * @param imei - The raw IMEI string to validate
+ */
+export function validateIMEI(imei: string): string | null {
+  if (!/^\d+$/.test(imei)) return 'IMEI must contain only digits.';
+  if (imei.length !== 15) return 'IMEI must be exactly 15 digits.';
+  if (!isValidIMEI(imei)) return 'Invalid IMEI — checksum verification failed.';
+  return null;
+}
 
 /**
  * Hash an IMEI using SHA-256.
@@ -86,6 +121,7 @@ export const HAVEN_CONTRACT_ID =
  *
  * @param imei - The raw IMEI string (15 digits)
  * @returns The SHA-256 hash as a hex string
+ * @throws Error if the IMEI fails validation
  *
  * @example
  * ```typescript
@@ -94,6 +130,9 @@ export const HAVEN_CONTRACT_ID =
  * ```
  */
 export async function hashIMEI(imei: string): Promise<string> {
+  const error = validateIMEI(imei);
+  if (error) throw new Error(error);
+
   const encoder = new TextEncoder();
   const data = encoder.encode(imei);
   const hashBuffer = await crypto.subtle.digest('SHA-256', data);
