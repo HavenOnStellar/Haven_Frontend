@@ -26,7 +26,7 @@ export default function Home() {
             <a href="#protocol" className="text-[#e1bfb2] font-medium hover:text-[#e6e1df] transition-colors">Ecosystem</a>
             <a href="#protocol" className="text-[#e1bfb2] font-medium hover:text-[#e6e1df] transition-colors">Protocol</a>
             <a href="#scale" className="text-[#e1bfb2] font-medium hover:text-[#e6e1df] transition-colors">Governance</a>
-            <a href="https://github.com/HavenOnStellar" className="text-[#e1bfb2] font-medium hover:text-[#e6e1df] transition-colors">Docs</a>
+            <a href="https://haven-docs.gitbook.io/haven/" target="_blank" rel="noopener noreferrer" className="text-[#e1bfb2] font-medium hover:text-[#e6e1df] transition-colors">Docs</a>
           </div>
           {/* GitHub Button */}
           <div className="flex items-center gap-6">
@@ -99,7 +99,7 @@ export default function Home() {
               Start Contributing
             </a>
             <a
-              href="https://github.com/HavenOnStellar"
+              href="https://haven-docs.gitbook.io/haven/"
               target="_blank"
               rel="noopener noreferrer"
               className="glass-panel rounded-lg px-10 md:px-20 py-3 text-xl font-bold text-[#f49e00] hover:bg-white/5 active:scale-95 transition-all duration-300 text-center"
@@ -193,7 +193,7 @@ export default function Home() {
           </p>
           <div className="flex flex-wrap items-center justify-center md:justify-end gap-6 md:gap-12">
             <a href="https://github.com/HavenOnStellar" target="_blank" rel="noopener noreferrer" className="text-sm text-[#e1bfb2] hover:text-[#ffb596] transition-colors duration-300">GitHub</a>
-            <a href="https://stellar.org" target="_blank" rel="noopener noreferrer" className="text-sm text-[#e1bfb2] hover:text-[#ffb596] transition-colors duration-300">Documentation</a>
+            <a href="https://haven-docs.gitbook.io/haven/" target="_blank" rel="noopener noreferrer" className="text-sm text-[#e1bfb2] hover:text-[#ffb596] transition-colors duration-300">Documentation</a>
             <a href="https://stellar.org/bounties" target="_blank" rel="noopener noreferrer" className="text-sm text-[#e1bfb2] hover:text-[#ffb596] transition-colors duration-300">Stellar Bounties</a>
           </div>
         </div>

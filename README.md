@@ -21,7 +21,7 @@ The frontend currently includes:
 - **Stellar SDK client stub** — typed functions ready to connect to the deployed Soroban contract
 - **Responsive design** — mobile-first layout with desktop breakpoints
 
-> **Looking for the smart contracts?** See [`haven-contracts`](https://github.com/HavenOnStellar/Haven_Contracts)
+> **Looking for the smart contracts or documentation?** See the contracts repo and the GitBook docs at [haven-docs.gitbook.io/haven](https://haven-docs.gitbook.io/haven/).
 
 ---
 
@@ -170,5 +170,5 @@ See **[CONTRIBUTING.md](./CONTRIBUTING.md)** for the full guide.
 ---
 
 <div align="center">
-  <i>Part of the <a href="https://github.com/HavenOnStellar">Haven Protocol</a> — built with ❤️ to defeat the black market.</i>
+  <i>Part of the <a href="https://github.com/HavenOnStellar">Haven Protocol</a> — built with ❤️ to defeat the black market. <a href="https://haven-docs.gitbook.io/haven/" target="_blank" rel="noopener noreferrer">Docs</a></i>
 </div>
