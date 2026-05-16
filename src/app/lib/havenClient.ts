@@ -44,9 +44,16 @@ export const NETWORK_CONFIG = {
   },
 } as const;
 
-/** The deployed Haven Registry contract ID (set after deployment) */
-// TODO: Update this after deploying the contract
-export const HAVEN_CONTRACT_ID = 'CAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
+/** Current network (from environment variable) */
+export const CURRENT_NETWORK = (process.env.NEXT_PUBLIC_STELLAR_NETWORK || 'testnet') as 'testnet' | 'mainnet';
+
+/** Active network configuration */
+export const ACTIVE_NETWORK_CONFIG = NETWORK_CONFIG[CURRENT_NETWORK];
+
+/** The deployed Haven Registry contract ID (from environment variable) */
+export const HAVEN_CONTRACT_ID = 
+  process.env.NEXT_PUBLIC_HAVEN_CONTRACT_ID || 
+  'CAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
 
 // ---------------------------------------------------------------------------
 // IMEI Hashing (Client-Side Utility)
