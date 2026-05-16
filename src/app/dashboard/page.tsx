@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { useState } from 'react';
+import WalletStatus from '../components/WalletStatus';
 
 interface Device {
   id: string;
@@ -20,6 +21,7 @@ const MOCK_DEVICES: Device[] = [
 
 export default function DashboardPage() {
   const [devices] = useState<Device[]>(MOCK_DEVICES);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const registered = devices.filter((d) => d.status === 'registered').length;
   const stolen = devices.filter((d) => d.status === 'stolen').length;
@@ -40,15 +42,37 @@ export default function DashboardPage() {
             <Link href="/verify" className="text-[#e1bfb2] font-medium hover:text-[#e6e1df] transition-colors">Verify</Link>
             <Link href="/dashboard" className="text-[#e6e1df] font-medium">Dashboard</Link>
           </div>
-          <Link
-            href="/"
-            className="glass-panel hover:bg-white/5 rounded-lg transition-all duration-300 px-6 py-3 text-xs font-bold uppercase tracking-[0.08em] text-[#f49e00] border-[#E85D04] flex items-center gap-2 active:scale-95"
-            style={{ borderColor: '#E85D04' }}
-          >
-            <span className="material-symbols-outlined text-lg" aria-hidden="true">home</span>
-            Back to Home
-          </Link>
+          <div className="flex items-center gap-4 md:gap-6">
+            <div className="hidden md:block">
+              <WalletStatus />
+            </div>
+            <button
+              className="md:hidden text-[#e6e1df] p-1 hover:bg-white/5 rounded-lg transition-all active:scale-95"
+              onClick={() => setIsMenuOpen((prev) => !prev)}
+              aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
+              aria-expanded={isMenuOpen}
+              aria-controls="mobile-menu"
+            >
+              <span className="material-symbols-outlined" aria-hidden="true">{isMenuOpen ? 'close' : 'menu'}</span>
+            </button>
+          </div>
         </div>
+
+        {isMenuOpen && (
+          <div
+            id="mobile-menu"
+            className="md:hidden bg-[#0A0908]/95 backdrop-blur-lg border-b border-white/10"
+          >
+            <div className="flex flex-col p-6 gap-4">
+              <Link href="/" onClick={() => setIsMenuOpen(false)} className="text-[#e1bfb2] text-lg font-medium hover:text-[#e6e1df] transition-colors">Home</Link>
+              <Link href="/verify" onClick={() => setIsMenuOpen(false)} className="text-[#e1bfb2] text-lg font-medium hover:text-[#e6e1df] transition-colors">Verify</Link>
+              <Link href="/dashboard" onClick={() => setIsMenuOpen(false)} className="text-[#e6e1df] text-lg font-medium">Dashboard</Link>
+              <div className="pt-2 border-t border-white/10">
+                <WalletStatus />
+              </div>
+            </div>
+          </div>
+        )}
       </nav>
 
       {/* ===== MAIN ===== */}

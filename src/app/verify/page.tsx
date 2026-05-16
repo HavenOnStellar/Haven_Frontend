@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { getDeviceStatus, hashIMEI, validateIMEI } from '../lib/havenClient';
+import WalletStatus from '../components/WalletStatus';
 
 type LookupState = 'empty' | 'loading' | 'success' | 'not-found' | 'error';
 
@@ -77,14 +78,17 @@ export default function VerifyPage() {
             <a href="/verify" className="text-[#e6e1df] font-medium">Verify</a>
             <a href="/dashboard" className="text-[#e1bfb2] font-medium hover:text-[#e6e1df] transition-colors">Dashboard</a>
           </div>
-          <a
-            href="/"
-            className="glass-panel hover:bg-white/5 rounded-lg transition-all duration-300 px-6 py-3 text-xs font-bold uppercase tracking-[0.08em] text-[#f49e00] border-[#E85D04] flex items-center gap-2 active:scale-95"
-            style={{ borderColor: '#E85D04' }}
-          >
-            <span className="material-symbols-outlined text-lg" aria-hidden="true">home</span>
-            Back to Home
-          </a>
+          <div className="flex items-center gap-2 md:gap-6">
+            <a
+              href="/"
+              className="glass-panel hover:bg-white/5 rounded-lg transition-all duration-300 px-3 md:px-6 py-2 md:py-3 text-xs font-bold uppercase tracking-[0.08em] text-[#f49e00] border-[#E85D04] flex items-center gap-2 active:scale-95"
+              style={{ borderColor: '#E85D04' }}
+            >
+              <span className="material-symbols-outlined text-sm md:text-lg" aria-hidden="true">home</span>
+              <span className="hidden sm:inline">Back to Home</span>
+            </a>
+            <WalletStatus />
+          </div>
         </div>
       </nav>
 
