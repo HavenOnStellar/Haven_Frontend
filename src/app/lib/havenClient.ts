@@ -145,10 +145,35 @@ export async function hashIMEI(imei: string): Promise<string> {
 // ---------------------------------------------------------------------------
 
 /**
+ * Standard result shape for all contract write operations.
+ *
+ * UI consumers should check `status` first:
+ * - `"success"` — `txHash` will be populated.
+ * - `"error"` — `errorMessage` will describe what went wrong.
+ * - `"pending"` — transaction submitted, awaiting confirmation.
+ */
+export interface ContractResult {
+  status: 'success' | 'error' | 'pending';
+  txHash: string | null;
+  errorMessage: string | null;
+}
+
+/**
  * Register a new device on the Haven Registry.
  *
  * @param hashedImei - SHA-256 hash of the IMEI (from `hashIMEI()` or server-side)
  * @param deviceModel - Human-readable device model (e.g., "iPhone 15 Pro")
+ * @returns A `ContractResult` indicating transaction outcome.
+ *
+ * @example
+ * ```typescript
+ * const result = await registerDevice(hashedImei, 'iPhone 15 Pro');
+ * if (result.status === 'success') {
+ *   console.log('Registered:', result.txHash);
+ * } else {
+ *   console.error('Failed:', result.errorMessage);
+ * }
+ * ```
  *
  * TODO:
  * - [ ] Import and use the generated TypeScript bindings
@@ -159,7 +184,7 @@ export async function hashIMEI(imei: string): Promise<string> {
 export async function registerDevice(
   hashedImei: string,
   deviceModel: string
-): Promise<void> {
+): Promise<ContractResult> {
   console.log('[Haven] registerDevice stub called', { hashedImei, deviceModel });
 
   // TODO: Implement using Stellar SDK
@@ -171,7 +196,11 @@ export async function registerDevice(
   // const signedTx = await freighterApi.signTransaction(tx.toXDR(), { networkPassphrase });
   // const result = await server.sendTransaction(signedTx);
 
-  throw new Error('Not implemented — see TODO in havenClient.ts');
+  return {
+    status: 'error',
+    txHash: null,
+    errorMessage: 'Not implemented — see TODO in havenClient.ts',
+  };
 }
 
 /**
@@ -180,6 +209,15 @@ export async function registerDevice(
  * @param hashedImei - SHA-256 hash of the IMEI
  * @param bountyAmount - Amount to escrow (in stroops for XLM, or USDC smallest unit)
  * @param recoveryContact - Email or phone for the finder to contact
+ * @returns A `ContractResult` indicating transaction outcome.
+ *
+ * @example
+ * ```typescript
+ * const result = await reportStolen(hashedImei, 500_000_000, 'owner@example.com');
+ * if (result.status === 'success') {
+ *   console.log('Bounty deposited:', result.txHash);
+ * }
+ * ```
  *
  * TODO:
  * - [ ] Build the `report_stolen` Soroban transaction
@@ -190,14 +228,18 @@ export async function reportStolen(
   hashedImei: string,
   bountyAmount: number,
   recoveryContact: string
-): Promise<void> {
+): Promise<ContractResult> {
   console.log('[Haven] reportStolen stub called', {
     hashedImei,
     bountyAmount,
     recoveryContact,
   });
 
-  throw new Error('Not implemented — see TODO in havenClient.ts');
+  return {
+    status: 'error',
+    txHash: null,
+    errorMessage: 'Not implemented — see TODO in havenClient.ts',
+  };
 }
 
 /**
@@ -205,6 +247,15 @@ export async function reportStolen(
  *
  * @param hashedImei - SHA-256 hash of the IMEI
  * @param finderAddress - Stellar public key of the person returning the device
+ * @returns A `ContractResult` indicating transaction outcome.
+ *
+ * @example
+ * ```typescript
+ * const result = await confirmRecovery(hashedImei, 'G...finder');
+ * if (result.status === 'success') {
+ *   console.log('Bounty released:', result.txHash);
+ * }
+ * ```
  *
  * TODO:
  * - [ ] Build the `confirm_recovery` Soroban transaction
@@ -214,13 +265,17 @@ export async function reportStolen(
 export async function confirmRecovery(
   hashedImei: string,
   finderAddress: string
-): Promise<void> {
+): Promise<ContractResult> {
   console.log('[Haven] confirmRecovery stub called', {
     hashedImei,
     finderAddress,
   });
 
-  throw new Error('Not implemented — see TODO in havenClient.ts');
+  return {
+    status: 'error',
+    txHash: null,
+    errorMessage: 'Not implemented — see TODO in havenClient.ts',
+  };
 }
 
 /**
