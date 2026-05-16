@@ -44,9 +44,10 @@ export const NETWORK_CONFIG = {
   },
 } as const;
 
-/** The deployed Haven Registry contract ID (set after deployment) */
-// TODO: Update this after deploying the contract
-export const HAVEN_CONTRACT_ID = 'CAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
+/** The deployed Haven Registry contract ID */
+export const HAVEN_CONTRACT_ID =
+  process.env.NEXT_PUBLIC_HAVEN_CONTRACT_ID ??
+  'CAT2TDBXGW6GETW52MQB725PLWN2CBVO3YSKLHRA7SRN6FC';
 
 // ---------------------------------------------------------------------------
 // IMEI Hashing (Client-Side Utility)

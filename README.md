@@ -43,11 +43,28 @@ cd haven-frontend
 # Install dependencies
 npm install
 
+# Configure environment variables
+cp .env.example .env.local
+
 # Run development server
 npm run dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) to see the landing page.
+
+### Environment Variables
+
+Create a `.env.local` file (or copy `.env.example`) to configure the Haven smart contract:
+
+| Variable | Required | Description |
+|----------|----------|-------------|
+| `NEXT_PUBLIC_HAVEN_CONTRACT_ID` | No | Stellar contract ID for the Haven Registry. Defaults to the current testnet deployment. |
+
+```env
+NEXT_PUBLIC_HAVEN_CONTRACT_ID=CAT2TDBXGW6GETW52MQB725PLWN2CBVO3YSKLHRA7SRN6FC
+```
+
+If you deploy your own instance of the contract, update this value to point to your contract ID.
 
 ### Build
 
