@@ -44,16 +44,33 @@ export const NETWORK_CONFIG = {
   },
 } as const;
 
-/** Current network (from environment variable) */
-export const CURRENT_NETWORK = (process.env.NEXT_PUBLIC_STELLAR_NETWORK || 'testnet') as 'testnet' | 'mainnet';
+export type NetworkKey = keyof typeof NETWORK_CONFIG;
 
-/** Active network configuration */
-export const ACTIVE_NETWORK_CONFIG = NETWORK_CONFIG[CURRENT_NETWORK];
+/**
+ * Returns the active Stellar network configuration.
+ *
+ * Reads `NEXT_PUBLIC_STELLAR_NETWORK` from environment variables.
+ * Supported values: `testnet`, `mainnet`.
+ * Defaults to `testnet` for local development.
+ *
+ * @throws Error if an unsupported network value is configured.
+ */
+export function getNetworkConfig(): (typeof NETWORK_CONFIG)[NetworkKey] {
+  const network = (process.env.NEXT_PUBLIC_STELLAR_NETWORK ?? 'testnet') as NetworkKey;
 
-/** The deployed Haven Registry contract ID (from environment variable) */
-export const HAVEN_CONTRACT_ID = 
-  process.env.NEXT_PUBLIC_HAVEN_CONTRACT_ID || 
-  'CAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
+  if (!(network in NETWORK_CONFIG)) {
+    throw new Error(
+      `Unsupported Stellar network: "${network}". Use "testnet" or "mainnet".`
+    );
+  }
+
+  return NETWORK_CONFIG[network];
+}
+
+/** The deployed Haven Registry contract ID */
+export const HAVEN_CONTRACT_ID =
+  process.env.NEXT_PUBLIC_HAVEN_CONTRACT_ID ??
+  'CAT2TDBXGW6GETW52MQB725PLWN2CBVO3YSKLHRA7SRN6FC';
 
 // ---------------------------------------------------------------------------
 // IMEI Hashing (Client-Side Utility)
