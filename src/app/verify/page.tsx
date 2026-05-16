@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Link from 'next/link';
 import { getDeviceStatus, hashIMEI, validateIMEI } from '../lib/havenClient';
 
 type LookupState = 'empty' | 'loading' | 'success' | 'not-found' | 'error';
@@ -67,24 +68,24 @@ export default function VerifyPage() {
       {/* ===== NAVBAR ===== */}
       <nav className="bg-[#0A0908]/80 backdrop-blur-md sticky top-0 w-full z-50 border-b border-white/10 shadow-xl shadow-[#ffb596]/5">
         <div className="flex justify-between items-center max-w-[1200px] mx-auto px-6 md:px-12 h-20">
-          <a href="/" className="flex items-center gap-3">
+          <Link href="/" className="flex items-center gap-3">
             <div className="text-2xl md:text-4xl font-bold tracking-tight text-[#e6e1df]">
               Haven
             </div>
-          </a>
+          </Link>
           <div className="hidden md:flex items-center gap-12">
-            <a href="/" className="text-[#e1bfb2] font-medium hover:text-[#e6e1df] transition-colors">Home</a>
-            <a href="/verify" className="text-[#e6e1df] font-medium">Verify</a>
-            <a href="/dashboard" className="text-[#e1bfb2] font-medium hover:text-[#e6e1df] transition-colors">Dashboard</a>
+            <Link href="/" className="text-[#e1bfb2] font-medium hover:text-[#e6e1df] transition-colors">Home</Link>
+            <Link href="/verify" className="text-[#e6e1df] font-medium">Verify</Link>
+            <Link href="/dashboard" className="text-[#e1bfb2] font-medium hover:text-[#e6e1df] transition-colors">Dashboard</Link>
           </div>
-          <a
+          <Link
             href="/"
             className="glass-panel hover:bg-white/5 rounded-lg transition-all duration-300 px-6 py-3 text-xs font-bold uppercase tracking-[0.08em] text-[#f49e00] border-[#E85D04] flex items-center gap-2 active:scale-95"
             style={{ borderColor: '#E85D04' }}
           >
             <span className="material-symbols-outlined text-lg" aria-hidden="true">home</span>
             Back to Home
-          </a>
+          </Link>
         </div>
       </nav>
 
@@ -210,8 +211,8 @@ export default function VerifyPage() {
             Haven — The Open Source Device Registry.
           </p>
           <div className="flex flex-wrap items-center justify-center md:justify-end gap-6 md:gap-12">
-            <a href="/" className="text-sm text-[#e1bfb2] hover:text-[#ffb596] transition-colors duration-300">Home</a>
-            <a href="/dashboard" className="text-sm text-[#e1bfb2] hover:text-[#ffb596] transition-colors duration-300">Dashboard</a>
+            <Link href="/" className="text-sm text-[#e1bfb2] hover:text-[#ffb596] transition-colors duration-300">Home</Link>
+            <Link href="/dashboard" className="text-sm text-[#e1bfb2] hover:text-[#ffb596] transition-colors duration-300">Dashboard</Link>
             <a href="https://github.com/HavenOnStellar" target="_blank" rel="noopener noreferrer" className="text-sm text-[#e1bfb2] hover:text-[#ffb596] transition-colors duration-300">GitHub</a>
           </div>
         </div>
