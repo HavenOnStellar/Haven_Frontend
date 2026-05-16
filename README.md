@@ -58,9 +58,11 @@ Create a `.env.local` file (or copy `.env.example`) to configure the Haven smart
 
 | Variable | Required | Description |
 |----------|----------|-------------|
+| `NEXT_PUBLIC_STELLAR_NETWORK` | No | Stellar network to use: `testnet` or `mainnet`. Defaults to `testnet`. |
 | `NEXT_PUBLIC_HAVEN_CONTRACT_ID` | No | Stellar contract ID for the Haven Registry. Defaults to the current testnet deployment. |
 
 ```env
+NEXT_PUBLIC_STELLAR_NETWORK=testnet
 NEXT_PUBLIC_HAVEN_CONTRACT_ID=CAT2TDBXGW6GETW52MQB725PLWN2CBVO3YSKLHRA7SRN6FC
 ```
 
