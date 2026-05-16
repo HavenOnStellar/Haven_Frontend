@@ -21,7 +21,7 @@ The frontend currently includes:
 - **Stellar SDK client stub** — typed functions ready to connect to the deployed Soroban contract
 - **Responsive design** — mobile-first layout with desktop breakpoints
 
-> **Looking for the smart contracts?** See [`haven-contracts`](https://github.com/HavenOnStellar/Haven_Contracts)
+> **Looking for the smart contracts or documentation?** See the contracts repo and the GitBook docs at [haven-docs.gitbook.io/haven](https://haven-docs.gitbook.io/haven/).
 
 ---
 
@@ -44,7 +44,8 @@ cd haven-frontend
 npm install
 
 # Configure environment variables
-cp .env.example .env.local
+cp .env.local.example .env.local
+# Edit .env.local with your configuration (see below)
 
 # Run development server
 npm run dev
@@ -52,19 +53,33 @@ npm run dev
 
 Open [http://localhost:3000](http://localhost:3000) to see the landing page.
 
-### Environment Variables
+### Environment Configuration
 
-Create a `.env.local` file (or copy `.env.example`) to configure the Haven smart contract:
+The frontend requires environment variables for Stellar network and contract configuration:
 
-| Variable | Required | Description |
-|----------|----------|-------------|
-| `NEXT_PUBLIC_HAVEN_CONTRACT_ID` | No | Stellar contract ID for the Haven Registry. Defaults to the current testnet deployment. |
+| Variable | Description | Default for Local Dev |
+|----------|-------------|----------------------|
+| `NEXT_PUBLIC_STELLAR_NETWORK` | Stellar network to connect to (`testnet` or `mainnet`) | `testnet` |
+| `NEXT_PUBLIC_HAVEN_CONTRACT_ID` | Deployed Haven Registry contract ID | See `.env.local.example` |
 
-```env
-NEXT_PUBLIC_HAVEN_CONTRACT_ID=CAT2TDBXGW6GETW52MQB725PLWN2CBVO3YSKLHRA7SRN6FC
-```
+**For local testnet development:**
 
-If you deploy your own instance of the contract, update this value to point to your contract ID.
+1. Copy `.env.local.example` to `.env.local`
+2. Keep `NEXT_PUBLIC_STELLAR_NETWORK=testnet` (default)
+3. Update `NEXT_PUBLIC_HAVEN_CONTRACT_ID` after deploying the contract:
+   ```bash
+   # Deploy contract and generate bindings
+   stellar contract bindings typescript \
+     --network testnet \
+     --contract-id <YOUR_CONTRACT_ID> \
+     --output-dir ./src/app/lib/haven-bindings
+   ```
+4. Fund test accounts using the [Stellar testnet faucet](https://laboratory.stellar.org/#account-creator)
+5. Configure Freighter wallet for testnet mode
+
+**For production:**
+- Set `NEXT_PUBLIC_STELLAR_NETWORK=mainnet`
+- Deploy contract to mainnet and update the contract ID accordingly
 
 ### Build
 
@@ -155,5 +170,5 @@ See **[CONTRIBUTING.md](./CONTRIBUTING.md)** for the full guide.
 ---
 
 <div align="center">
-  <i>Part of the <a href="https://github.com/HavenOnStellar">Haven Protocol</a> — built with ❤️ to defeat the black market.</i>
+  <i>Part of the <a href="https://github.com/HavenOnStellar">Haven Protocol</a> — built with ❤️ to defeat the black market. <a href="https://haven-docs.gitbook.io/haven/" target="_blank" rel="noopener noreferrer">Docs</a></i>
 </div>

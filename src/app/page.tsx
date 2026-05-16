@@ -9,7 +9,7 @@ export default function Home() {
   return (
     <div className="bg-[#0A0908] text-[#e6e1df] min-h-screen relative overflow-x-hidden flex flex-col">
       {/* Ambient Background Orb */}
-      <div className="hero-gradient-orb" />
+      <div className="hero-gradient-orb" aria-hidden="true" />
 
       {/* ===== NAVBAR ===== */}
       <nav className="bg-[#0A0908]/80 backdrop-blur-md sticky top-0 w-full z-50 border-b border-white/10 shadow-xl shadow-[#ffb596]/5">
@@ -26,7 +26,7 @@ export default function Home() {
             <a href="#protocol" className="text-[#e1bfb2] font-medium hover:text-[#e6e1df] transition-colors">Ecosystem</a>
             <a href="#protocol" className="text-[#e1bfb2] font-medium hover:text-[#e6e1df] transition-colors">Protocol</a>
             <a href="#scale" className="text-[#e1bfb2] font-medium hover:text-[#e6e1df] transition-colors">Governance</a>
-            <a href="https://github.com/HavenOnStellar" className="text-[#e1bfb2] font-medium hover:text-[#e6e1df] transition-colors">Docs</a>
+            <a href="https://haven-docs.gitbook.io/haven/" target="_blank" rel="noopener noreferrer" className="text-[#e1bfb2] font-medium hover:text-[#e6e1df] transition-colors">Docs</a>
           </div>
           {/* GitHub Button */}
           <div className="flex items-center gap-6">
@@ -37,7 +37,7 @@ export default function Home() {
               className="glass-panel hover:bg-white/5 rounded-lg transition-all duration-300 px-6 py-3 text-xs font-bold uppercase tracking-[0.08em] text-[#f49e00] border-[#E85D04] flex items-center gap-2 active:scale-95"
               style={{ borderColor: '#E85D04' }}
             >
-              <span className="material-symbols-outlined text-lg">terminal</span>
+              <span className="material-symbols-outlined text-lg" aria-hidden="true">terminal</span>
               GitHub
             </a>
             {/* Mobile Menu Button */}
@@ -48,7 +48,7 @@ export default function Home() {
               aria-expanded={isMenuOpen}
               aria-controls="mobile-menu"
             >
-              <span className="material-symbols-outlined">{isMenuOpen ? 'close' : 'menu'}</span>
+              <span className="material-symbols-outlined" aria-hidden="true">{isMenuOpen ? 'close' : 'menu'}</span>
             </button>
           </div>
         </div>
@@ -99,7 +99,7 @@ export default function Home() {
               Start Contributing
             </a>
             <a
-              href="https://github.com/HavenOnStellar"
+              href="https://haven-docs.gitbook.io/haven/"
               target="_blank"
               rel="noopener noreferrer"
               className="glass-panel rounded-lg px-10 md:px-20 py-3 text-xl font-bold text-[#f49e00] hover:bg-white/5 active:scale-95 transition-all duration-300 text-center"
@@ -144,7 +144,7 @@ export default function Home() {
           ].map((step, i) => (
             <div key={i} className="bg-[#211f1e]/50 backdrop-blur-md border border-white/10 rounded-xl p-8 md:p-12 flex flex-col items-center text-center relative z-10 hover:scale-[1.02] transition-transform duration-300">
               <div className="w-16 h-16 rounded-full bg-[#141312] border border-[#a98a7e]/20 flex items-center justify-center mb-6 shadow-lg">
-                <span className="material-symbols-outlined text-[#ffb596] text-3xl">{step.icon}</span>
+                <span className="material-symbols-outlined text-[#ffb596] text-3xl" aria-hidden="true">{step.icon}</span>
               </div>
               <h3 className="text-2xl font-semibold text-[#e6e1df] mb-3">{step.title}</h3>
               <p className="text-base text-[#e1bfb2] leading-relaxed">{step.desc}</p>
@@ -166,7 +166,7 @@ export default function Home() {
           ].map((card, i) => (
             <div key={i} className="glass-panel rounded-xl p-8 flex flex-col gap-3 hover:scale-[1.02] transition-transform duration-300">
               <div className="flex items-center gap-4">
-                <span className="material-symbols-outlined text-[#ffb596] text-3xl">{card.icon}</span>
+                <span className="material-symbols-outlined text-[#ffb596] text-3xl" aria-hidden="true">{card.icon}</span>
                 <h3 className="text-xl md:text-2xl font-semibold text-[#e6e1df]">{card.title}</h3>
               </div>
               <p className="text-base text-[#e1bfb2] leading-relaxed">{card.desc}</p>
@@ -193,7 +193,7 @@ export default function Home() {
           </p>
           <div className="flex flex-wrap items-center justify-center md:justify-end gap-6 md:gap-12">
             <a href="https://github.com/HavenOnStellar" target="_blank" rel="noopener noreferrer" className="text-sm text-[#e1bfb2] hover:text-[#ffb596] transition-colors duration-300">GitHub</a>
-            <a href="https://stellar.org" target="_blank" rel="noopener noreferrer" className="text-sm text-[#e1bfb2] hover:text-[#ffb596] transition-colors duration-300">Documentation</a>
+            <a href="https://haven-docs.gitbook.io/haven/" target="_blank" rel="noopener noreferrer" className="text-sm text-[#e1bfb2] hover:text-[#ffb596] transition-colors duration-300">Documentation</a>
             <a href="https://stellar.org/bounties" target="_blank" rel="noopener noreferrer" className="text-sm text-[#e1bfb2] hover:text-[#ffb596] transition-colors duration-300">Stellar Bounties</a>
           </div>
         </div>

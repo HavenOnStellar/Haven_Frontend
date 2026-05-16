@@ -44,6 +44,29 @@ export const NETWORK_CONFIG = {
   },
 } as const;
 
+export type NetworkKey = keyof typeof NETWORK_CONFIG;
+
+/**
+ * Returns the active Stellar network configuration.
+ *
+ * Reads `NEXT_PUBLIC_STELLAR_NETWORK` from environment variables.
+ * Supported values: `testnet`, `mainnet`.
+ * Defaults to `testnet` for local development.
+ *
+ * @throws Error if an unsupported network value is configured.
+ */
+export function getNetworkConfig(): (typeof NETWORK_CONFIG)[NetworkKey] {
+  const network = (process.env.NEXT_PUBLIC_STELLAR_NETWORK ?? 'testnet') as NetworkKey;
+
+  if (!(network in NETWORK_CONFIG)) {
+    throw new Error(
+      `Unsupported Stellar network: "${network}". Use "testnet" or "mainnet".`
+    );
+  }
+
+  return NETWORK_CONFIG[network];
+}
+
 /** The deployed Haven Registry contract ID */
 export const HAVEN_CONTRACT_ID =
   process.env.NEXT_PUBLIC_HAVEN_CONTRACT_ID ??
