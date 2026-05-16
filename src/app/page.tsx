@@ -87,14 +87,15 @@ export default function Home() {
           {/* Trust Metrics */}
           <div className="mt-8 grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 w-full glass-panel rounded-xl p-6 animate-fade-in-up animation-delay-400">
             {[
-              { value: '12k+', label: 'Devices Secured' },
-              { value: '$2.4M', label: 'Bounties Paid' },
-              { value: '100%', label: 'Trustless' },
-              { value: '<2s', label: 'Verification Time' },
+              { value: '12k+', label: 'Launch Device Target', context: 'Planned coverage' },
+              { value: '$2.4M', label: 'Target Recovery Pool', context: 'Projected bounties' },
+              { value: '100%', label: 'Trustless Design', context: 'Protocol goal' },
+              { value: '<2s', label: 'Target Verification', context: 'Performance goal' },
             ].map((stat, i) => (
               <div key={i} className="flex flex-col items-center">
                 <span className="text-2xl md:text-3xl font-semibold text-[#e6e1df]">{stat.value}</span>
-                <span className="text-xs font-bold uppercase tracking-[0.08em] text-[#e1bfb2] mt-1">{stat.label}</span>
+                <span className="text-xs font-bold uppercase tracking-[0.08em] text-[#e1bfb2] mt-1 text-center">{stat.label}</span>
+                <span className="mt-2 text-[10px] font-semibold uppercase tracking-[0.08em] text-[#a98a7e] text-center">{stat.context}</span>
               </div>
             ))}
           </div>
