@@ -43,11 +43,43 @@ cd haven-frontend
 # Install dependencies
 npm install
 
+# Configure environment variables
+cp .env.local.example .env.local
+# Edit .env.local with your configuration (see below)
+
 # Run development server
 npm run dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) to see the landing page.
+
+### Environment Configuration
+
+The frontend requires environment variables for Stellar network and contract configuration:
+
+| Variable | Description | Default for Local Dev |
+|----------|-------------|----------------------|
+| `NEXT_PUBLIC_STELLAR_NETWORK` | Stellar network to connect to (`testnet` or `mainnet`) | `testnet` |
+| `NEXT_PUBLIC_HAVEN_CONTRACT_ID` | Deployed Haven Registry contract ID | See `.env.local.example` |
+
+**For local testnet development:**
+
+1. Copy `.env.local.example` to `.env.local`
+2. Keep `NEXT_PUBLIC_STELLAR_NETWORK=testnet` (default)
+3. Update `NEXT_PUBLIC_HAVEN_CONTRACT_ID` after deploying the contract:
+   ```bash
+   # Deploy contract and generate bindings
+   stellar contract bindings typescript \
+     --network testnet \
+     --contract-id <YOUR_CONTRACT_ID> \
+     --output-dir ./src/app/lib/haven-bindings
+   ```
+4. Fund test accounts using the [Stellar testnet faucet](https://laboratory.stellar.org/#account-creator)
+5. Configure Freighter wallet for testnet mode
+
+**For production:**
+- Set `NEXT_PUBLIC_STELLAR_NETWORK=mainnet`
+- Deploy contract to mainnet and update the contract ID accordingly
 
 ### Build
 
