@@ -75,6 +75,7 @@ export default function VerifyPage() {
           <div className="hidden md:flex items-center gap-12">
             <a href="/" className="text-[#e1bfb2] font-medium hover:text-[#e6e1df] transition-colors">Home</a>
             <a href="/verify" className="text-[#e6e1df] font-medium">Verify</a>
+            <a href="/dashboard" className="text-[#e1bfb2] font-medium hover:text-[#e6e1df] transition-colors">Dashboard</a>
           </div>
           <a
             href="/"
@@ -209,6 +210,7 @@ export default function VerifyPage() {
           </p>
           <div className="flex flex-wrap items-center justify-center md:justify-end gap-6 md:gap-12">
             <a href="/" className="text-sm text-[#e1bfb2] hover:text-[#ffb596] transition-colors duration-300">Home</a>
+            <a href="/dashboard" className="text-sm text-[#e1bfb2] hover:text-[#ffb596] transition-colors duration-300">Dashboard</a>
             <a href="https://github.com/HavenOnStellar" target="_blank" rel="noopener noreferrer" className="text-sm text-[#e1bfb2] hover:text-[#ffb596] transition-colors duration-300">GitHub</a>
           </div>
         </div>
