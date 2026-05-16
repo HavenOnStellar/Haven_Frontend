@@ -27,7 +27,7 @@ export default function DashboardPage() {
 
   return (
     <div className="bg-[#0A0908] text-[#e6e1df] min-h-screen relative overflow-x-hidden flex flex-col">
-      <div className="hero-gradient-orb" />
+      <div className="hero-gradient-orb" aria-hidden="true" />
 
       {/* ===== NAVBAR ===== */}
       <nav className="bg-[#0A0908]/80 backdrop-blur-md sticky top-0 w-full z-50 border-b border-white/10 shadow-xl shadow-[#ffb596]/5">
@@ -45,7 +45,7 @@ export default function DashboardPage() {
             className="glass-panel hover:bg-white/5 rounded-lg transition-all duration-300 px-6 py-3 text-xs font-bold uppercase tracking-[0.08em] text-[#f49e00] border-[#E85D04] flex items-center gap-2 active:scale-95"
             style={{ borderColor: '#E85D04' }}
           >
-            <span className="material-symbols-outlined text-lg">home</span>
+            <span className="material-symbols-outlined text-lg" aria-hidden="true">home</span>
             Back to Home
           </Link>
         </div>
@@ -55,7 +55,7 @@ export default function DashboardPage() {
       <main className="flex-grow relative z-10 px-6 md:px-12 py-20 md:py-28 max-w-[1200px] mx-auto w-full">
         {/* Banner */}
         <div className="glass-panel rounded-xl p-6 mb-12 flex flex-col sm:flex-row items-start sm:items-center gap-4 border-[#f49e00]/30" style={{ borderColor: 'rgba(244,158,0,0.3)' }}>
-          <span className="material-symbols-outlined text-[#f49e00] text-2xl flex-shrink-0">construction</span>
+          <span className="material-symbols-outlined text-[#f49e00] text-2xl flex-shrink-0" aria-hidden="true">construction</span>
           <div>
             <h2 className="text-lg font-semibold text-[#e6e1df]">Dashboard Preview</h2>
             <p className="text-sm text-[#e1bfb2]">
@@ -73,7 +73,7 @@ export default function DashboardPage() {
             { label: 'Active Bounties', value: stolen, icon: 'payments' },
           ].map((stat) => (
             <div key={stat.label} className="glass-panel rounded-xl p-6 flex flex-col items-center text-center">
-              <span className="material-symbols-outlined text-[#ffb596] text-2xl mb-2">{stat.icon}</span>
+              <span className="material-symbols-outlined text-[#ffb596] text-2xl mb-2" aria-hidden="true">{stat.icon}</span>
               <span className="text-2xl font-semibold text-[#e6e1df]">{stat.value}</span>
               <span className="text-xs font-bold uppercase tracking-[0.08em] text-[#e1bfb2] mt-1">{stat.label}</span>
             </div>
@@ -189,7 +189,7 @@ function StatusBadge({ status }: { status: Device['status'] }) {
 
   return (
     <span className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-[0.08em] ${config.bg} ${config.text}`}>
-      <span className={`w-1.5 h-1.5 rounded-full ${config.text.replace('text-', 'bg-')}`} />
+      <span className={`w-1.5 h-1.5 rounded-full ${config.text.replace('text-', 'bg-')}`} aria-hidden="true" />
       {config.label}
     </span>
   );

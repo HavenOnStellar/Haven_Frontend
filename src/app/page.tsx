@@ -9,7 +9,7 @@ export default function Home() {
   return (
     <div className="bg-[#0A0908] text-[#e6e1df] min-h-screen relative overflow-x-hidden flex flex-col">
       {/* Ambient Background Orb */}
-      <div className="hero-gradient-orb" />
+      <div className="hero-gradient-orb" aria-hidden="true" />
 
       {/* ===== NAVBAR ===== */}
       <nav className="bg-[#0A0908]/80 backdrop-blur-md sticky top-0 w-full z-50 border-b border-white/10 shadow-xl shadow-[#ffb596]/5">
@@ -39,7 +39,7 @@ export default function Home() {
               className="glass-panel hover:bg-white/5 rounded-lg transition-all duration-300 px-6 py-3 text-xs font-bold uppercase tracking-[0.08em] text-[#f49e00] border-[#E85D04] flex items-center gap-2 active:scale-95"
               style={{ borderColor: '#E85D04' }}
             >
-              <span className="material-symbols-outlined text-lg">terminal</span>
+              <span className="material-symbols-outlined text-lg" aria-hidden="true">terminal</span>
               GitHub
             </a>
             {/* Mobile Menu Button */}
@@ -50,7 +50,7 @@ export default function Home() {
               aria-expanded={isMenuOpen}
               aria-controls="mobile-menu"
             >
-              <span className="material-symbols-outlined">{isMenuOpen ? 'close' : 'menu'}</span>
+              <span className="material-symbols-outlined" aria-hidden="true">{isMenuOpen ? 'close' : 'menu'}</span>
             </button>
           </div>
         </div>
@@ -77,7 +77,7 @@ export default function Home() {
         <div className="max-w-[800px] text-center flex flex-col items-center gap-12">
           {/* Network Status Chip */}
           <div className="glass-panel rounded-full px-3 py-1 inline-flex items-center gap-2 animate-fade-in-up">
-            <div className="w-2 h-2 rounded-full bg-[#f49e00] animate-pulse-dot" />
+            <div className="w-2 h-2 rounded-full bg-[#f49e00] animate-pulse-dot" aria-hidden="true" />
             <span className="text-xs font-bold uppercase tracking-[0.08em] text-[#e1bfb2]">Stellar Network Live</span>
           </div>
 
@@ -143,10 +143,10 @@ export default function Home() {
 
         <div className="relative grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
           {/* Connecting Dashed Line (Desktop) */}
-          <div className="hidden md:block absolute top-[80px] left-[15%] right-[15%] h-px border-t-2 border-dashed border-white/10 z-0" />
+          <div className="hidden md:block absolute top-[80px] left-[15%] right-[15%] h-px border-t-2 border-dashed border-white/10 z-0" aria-hidden="true" />
 
           {/* Mobile Vertical Line */}
-          <div className="md:hidden absolute top-10 bottom-10 left-1/2 -translate-x-1/2 w-px border-l-2 border-dashed border-white/20 z-0" />
+          <div className="md:hidden absolute top-10 bottom-10 left-1/2 -translate-x-1/2 w-px border-l-2 border-dashed border-white/20 z-0" aria-hidden="true" />
 
           {[
             { icon: 'fingerprint', title: 'Register', desc: 'Hash your device IMEI into a secure, stateful asset on the Stellar network.' },
@@ -155,7 +155,7 @@ export default function Home() {
           ].map((step, i) => (
             <div key={i} className="bg-[#211f1e]/50 backdrop-blur-md border border-white/10 rounded-xl p-8 md:p-12 flex flex-col items-center text-center relative z-10 hover:scale-[1.02] transition-transform duration-300">
               <div className="w-16 h-16 rounded-full bg-[#141312] border border-[#a98a7e]/20 flex items-center justify-center mb-6 shadow-lg">
-                <span className="material-symbols-outlined text-[#ffb596] text-3xl">{step.icon}</span>
+                <span className="material-symbols-outlined text-[#ffb596] text-3xl" aria-hidden="true">{step.icon}</span>
               </div>
               <h3 className="text-2xl font-semibold text-[#e6e1df] mb-3">{step.title}</h3>
               <p className="text-base text-[#e1bfb2] leading-relaxed">{step.desc}</p>
@@ -177,7 +177,7 @@ export default function Home() {
           ].map((card, i) => (
             <div key={i} className="glass-panel rounded-xl p-8 flex flex-col gap-3 hover:scale-[1.02] transition-transform duration-300">
               <div className="flex items-center gap-4">
-                <span className="material-symbols-outlined text-[#ffb596] text-3xl">{card.icon}</span>
+                <span className="material-symbols-outlined text-[#ffb596] text-3xl" aria-hidden="true">{card.icon}</span>
                 <h3 className="text-xl md:text-2xl font-semibold text-[#e6e1df]">{card.title}</h3>
               </div>
               <p className="text-base text-[#e1bfb2] leading-relaxed">{card.desc}</p>

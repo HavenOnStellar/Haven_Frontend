@@ -62,7 +62,7 @@ export default function VerifyPage() {
 
   return (
     <div className="bg-[#0A0908] text-[#e6e1df] min-h-screen relative overflow-x-hidden flex flex-col">
-      <div className="hero-gradient-orb" />
+      <div className="hero-gradient-orb" aria-hidden="true" />
 
       {/* ===== NAVBAR ===== */}
       <nav className="bg-[#0A0908]/80 backdrop-blur-md sticky top-0 w-full z-50 border-b border-white/10 shadow-xl shadow-[#ffb596]/5">
@@ -82,7 +82,7 @@ export default function VerifyPage() {
             className="glass-panel hover:bg-white/5 rounded-lg transition-all duration-300 px-6 py-3 text-xs font-bold uppercase tracking-[0.08em] text-[#f49e00] border-[#E85D04] flex items-center gap-2 active:scale-95"
             style={{ borderColor: '#E85D04' }}
           >
-            <span className="material-symbols-outlined text-lg">home</span>
+            <span className="material-symbols-outlined text-lg" aria-hidden="true">home</span>
             Back to Home
           </a>
         </div>
@@ -94,7 +94,7 @@ export default function VerifyPage() {
           {/* Header */}
           <div className="text-center flex flex-col items-center gap-4">
             <div className="w-16 h-16 rounded-full bg-[#141312] border border-[#a98a7e]/20 flex items-center justify-center shadow-lg">
-              <span className="material-symbols-outlined text-[#ffb596] text-3xl">verified_user</span>
+              <span className="material-symbols-outlined text-[#ffb596] text-3xl" aria-hidden="true">verified_user</span>
             </div>
             <h1 className="text-3xl md:text-4xl font-bold tracking-tight">
               Device <span className="text-gradient-sunset">Verification</span>
@@ -114,6 +114,7 @@ export default function VerifyPage() {
                 if (state !== 'empty') setState('empty');
               }}
               placeholder="Enter IMEI or hashed IMEI"
+              aria-label="IMEI or hashed IMEI"
               className="flex-1 glass-panel rounded-lg px-4 py-3 text-[#e6e1df] placeholder:text-[#e1bfb2]/50 border-[#E85D04] focus:outline-none focus:ring-2 focus:ring-[#f26411]/40 transition-all"
               style={{ borderColor: 'rgba(232,93,4,0.4)' }}
               autoComplete="off"
@@ -131,7 +132,7 @@ export default function VerifyPage() {
           {/* States */}
           {state === 'empty' && (
             <div className="w-full glass-panel rounded-xl p-8 text-center animate-fade-in-up">
-              <span className="material-symbols-outlined text-[#e1bfb2]/40 text-5xl mb-4">search</span>
+              <span className="material-symbols-outlined text-[#e1bfb2]/40 text-5xl mb-4" aria-hidden="true">search</span>
               <p className="text-[#e1bfb2] text-sm">Enter an IMEI above to check its status on the Haven Registry.</p>
             </div>
           )}
@@ -146,7 +147,7 @@ export default function VerifyPage() {
           {state === 'success' && device && (
             <div className="w-full glass-panel rounded-xl p-8 animate-fade-in-up">
               <div className="flex items-center gap-3 mb-6">
-                <span className="material-symbols-outlined text-[#4caf50] text-2xl">check_circle</span>
+                <span className="material-symbols-outlined text-[#4caf50] text-2xl" aria-hidden="true">check_circle</span>
                 <h2 className="text-xl font-semibold text-[#e6e1df]">Device Found</h2>
               </div>
               <dl className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -186,7 +187,7 @@ export default function VerifyPage() {
 
           {state === 'not-found' && (
             <div className="w-full glass-panel rounded-xl p-8 text-center animate-fade-in-up">
-              <span className="material-symbols-outlined text-[#f49e00] text-5xl mb-4">warning</span>
+              <span className="material-symbols-outlined text-[#f49e00] text-5xl mb-4" aria-hidden="true">warning</span>
               <h2 className="text-xl font-semibold text-[#e6e1df] mb-2">Device Not Found</h2>
               <p className="text-[#e1bfb2] text-sm">No registration record exists for this IMEI on the Haven Registry.</p>
             </div>
@@ -194,7 +195,7 @@ export default function VerifyPage() {
 
           {state === 'error' && (
             <div className="w-full glass-panel rounded-xl p-8 text-center animate-fade-in-up">
-              <span className="material-symbols-outlined text-[#ffb4ab] text-5xl mb-4">error_outline</span>
+              <span className="material-symbols-outlined text-[#ffb4ab] text-5xl mb-4" aria-hidden="true">error_outline</span>
               <h2 className="text-xl font-semibold text-[#e6e1df] mb-2">Lookup Failed</h2>
               <p className="text-[#e1bfb2] text-sm">{errorMessage}</p>
             </div>
