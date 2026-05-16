@@ -39,8 +39,9 @@ export default function WalletStatus() {
     );
   }
 
-  if (isConnected) {
-    const shortKey = walletState!.publicKey.slice(0, 4) + '...' + walletState!.publicKey.slice(-4);
+  if (isConnected && walletState?.publicKey) {
+    const pk = walletState.publicKey;
+    const shortKey = pk.slice(0, 4) + '...' + pk.slice(-4);
 
     return (
       <div className="flex items-center gap-1.5 md:gap-3">
