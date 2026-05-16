@@ -19,6 +19,9 @@ This is the frontend application for [Haven Protocol](https://github.com/HavenOn
 The frontend currently includes:
 - **Landing page** — dark-mode marketing page with amber/orange gradient design system
 - **Stellar SDK client stub** — typed functions ready to connect to the deployed Soroban contract
+- **Freighter wallet helpers** — typed connection, detection, and state reading
+- **Device verification** — IMEI lookup page with validation
+- **Dashboard scaffold** — mock device management UI
 - **Responsive design** — mobile-first layout with desktop breakpoints
 
 > **Looking for the smart contracts?** See [`haven-contracts`](https://github.com/HavenOnStellar/Haven_Contracts)
@@ -98,8 +101,13 @@ src/
 │   ├── globals.css          # Design system — dark mode, amber gradients, glass panels
 │   ├── layout.tsx           # Root layout — SEO metadata, fonts, theme
 │   ├── page.tsx             # Landing page — hero, protocol flow, features
+│   ├── verify/
+│   │   └── page.tsx         # Device verification — IMEI lookup
+│   ├── dashboard/
+│   │   └── page.tsx         # User dashboard — device management (mock)
 │   └── lib/
-│       └── havenClient.ts   # Stellar SDK client stub with typed functions
+│       ├── havenClient.ts   # Stellar SDK client stub with typed functions
+│       └── wallet.ts        # Freighter wallet connection helpers
 ```
 
 ---
@@ -137,6 +145,49 @@ The UI follows a **dark-mode-first** aesthetic inspired by Web3 protocol sites:
 | **@stellar/freighter-api** | B2B wallet integration |
 | **Plus Jakarta Sans** | Primary typeface |
 | **Material Symbols** | Icon system |
+
+---
+
+## 🔌 Wallet Integration
+
+The app includes typed helpers in `src/app/lib/wallet.ts` for connecting to the **Freighter** browser extension wallet.
+
+### Usage
+
+```typescript
+import { connectWallet, getWalletState } from './lib/wallet';
+
+// "Connect Wallet" button handler
+const result = await connectWallet();
+if (result.connected) {
+  console.log('Public key:', result.state.publicKey);
+} else {
+  console.log('Error:', result.state.error);
+}
+
+// Non-interactive state check (no popup)
+const state = await getWalletState();
+```
+
+### Available Helpers
+
+| Function | Triggers Popup? | Description |
+|----------|:---------------:|-------------|
+| `isFreighterInstalled()` | No | Detects if the Freighter extension is present |
+| `isFreighterAllowed()` | No | Checks if this site already has permission |
+| `requestFreighterAccess()` | **Yes** | Requests user approval via extension popup |
+| `getFreighterPublicKey()` | No | Reads the connected public key (requires prior access) |
+| `getFreighterNetwork()` | No | Reads Freighter's current network setting |
+| `getWalletState()` | No | Returns a full `WalletState` snapshot |
+| `connectWallet()` | **Yes** | Full connection flow: detect → request → read |
+| `disconnectWallet()` | No | Resets local UI state (sync) |
+
+### Limitations
+
+- **Public key only** — Freighter never exposes private keys or seed phrases.
+- **Manual revoke** — there is no programmatic disconnect; users must revoke access in the Freighter extension settings.
+- **Network mismatch** — the helpers detect when Freighter's network differs from the app's `NEXT_PUBLIC_STELLAR_NETWORK` config, but do not auto-switch it.
+- **Browser extension required** — Freighter must be installed and unlocked. The helpers gracefully report when it is absent.
 
 ---
 
