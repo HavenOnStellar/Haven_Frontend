@@ -24,7 +24,6 @@ import {
   setAllowed,
   getAddress,
   getNetwork,
-  requestAccess,
 } from '@stellar/freighter-api';
 import { type NetworkKey } from './havenClient';
 

@@ -1,20 +1,15 @@
 'use client';
 
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect } from 'react';
 import { connectWallet, getWalletState, type WalletState } from '../lib/wallet';
 
 export default function WalletStatus() {
   const [walletState, setWalletState] = useState<WalletState | null>(null);
   const [isConnecting, setIsConnecting] = useState(false);
 
-  const refreshState = useCallback(async () => {
-    const state = await getWalletState();
-    setWalletState(state);
-  }, []);
-
   useEffect(() => {
-    refreshState();
-  }, [refreshState]);
+    getWalletState().then(setWalletState);
+  }, []);
 
   async function handleConnect() {
     setIsConnecting(true);
