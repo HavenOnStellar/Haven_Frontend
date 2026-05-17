@@ -3,31 +3,35 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme {
-  --font-jakarta: "Plus Jakarta Sans", sans-serif;
+  --font-inter: "Inter", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
 
-  /* Haven M3 Color System */
-  --color-background: #0A0908;
-  --color-surface: #141312;
-  --color-surface-container: #211f1e;
-  --color-surface-container-low: #1d1b1a;
-  --color-surface-container-high: #2b2a28;
-  --color-surface-container-highest: #363433;
-  --color-surface-bright: #3b3937;
+  /* Haven Deep Space / Cyber Security Color System */
+  --color-background: #080c10;
+  --color-surface: #0f151b;
+  --color-surface-container: #161e26;
+  --color-surface-container-low: #131a21;
+  --color-surface-container-high: #1c2631;
+  --color-surface-container-highest: #232f3c;
+  --color-surface-bright: #293847;
 
-  --color-on-surface: #e6e1df;
-  --color-on-surface-variant: #e1bfb2;
-  --color-outline: #a98a7e;
-  --color-outline-variant: #594137;
+  --color-on-surface: #f8fafc;
+  --color-on-surface-variant: #94a3b8;
+  --color-outline: #334155;
+  --color-outline-variant: #1e293b;
 
-  --color-primary: #ffb596;
-  --color-primary-container: #f26411;
-  --color-on-primary: #581e00;
+  --color-primary: #00d4aa;
+  --color-primary-container: #00876c;
+  --color-on-primary: #002c23;
 
-  --color-secondary: #ffc070;
-  --color-secondary-container: #f49e00;
+  --color-secondary: #0ea5e9;
+  --color-secondary-container: #0284c7;
 
-  --color-tertiary: #e9c400;
-  --color-error: #ffb4ab;
+  --color-danger: #f59e0b;
+  --color-danger-container: #b45309;
+  
+  --color-success: #10b981;
+  --color-success-container: #047857;
 }
 
 /* ===== Base ===== */
@@ -36,60 +40,55 @@ html {
 }
 
 body {
-  font-family: 'Plus Jakarta Sans', sans-serif;
-  background-color: #0A0908;
-  color: #e6e1df;
+  font-family: var(--font-inter), sans-serif;
+  background-color: #080c10;
+  color: #f8fafc;
 }
 
 ::selection {
-  background-color: rgba(242, 100, 17, 0.3);
+  background-color: rgba(0, 212, 170, 0.3);
 }
 
 /* ===== Gradient Text ===== */
-.text-gradient-sunset {
-  background: linear-gradient(90deg, #E85D04, #FAA307);
+.text-gradient-teal {
+  background: linear-gradient(90deg, #00d4aa, #0ea5e9);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
-/* ===== Gradient Button ===== */
-.btn-gradient {
-  background: linear-gradient(90deg, #E85D04, #FAA307);
-}
-
 /* ===== Glass Panel ===== */
 .glass-panel {
-  background: rgba(255, 255, 255, 0.03);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(15, 21, 27, 0.7);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .glass-panel-raised {
-  background: rgba(255, 255, 255, 0.06);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  background: rgba(22, 30, 38, 0.8);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 /* ===== Hero Gradient Orb ===== */
 .hero-gradient-orb {
   position: absolute;
-  top: 50%;
+  top: 40%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 800px;
-  height: 800px;
+  width: 1000px;
+  height: 1000px;
   background: radial-gradient(
     circle,
-    rgba(244, 158, 0, 0.15) 0%,
-    rgba(232, 93, 4, 0.05) 40%,
-    rgba(10, 9, 8, 0) 70%
+    rgba(0, 212, 170, 0.08) 0%,
+    rgba(14, 165, 233, 0.03) 40%,
+    rgba(8, 12, 16, 0) 70%
   );
   z-index: 0;
   pointer-events: none;
-  filter: blur(60px);
+  filter: blur(80px);
 }
 
 /* ===== Animations ===== */
@@ -117,12 +116,19 @@ body {
 .animation-delay-600 { animation-delay: 600ms; }
 
 @keyframes pulse-dot {
-  0%, 100% { box-shadow: 0 0 4px #f49e00; }
-  50% { box-shadow: 0 0 12px #f49e00; }
+  0%, 100% { box-shadow: 0 0 4px #00d4aa; }
+  50% { box-shadow: 0 0 12px #00d4aa; }
 }
 
 .animate-pulse-dot {
   animation: pulse-dot 2s ease-in-out infinite;
+}
+
+@keyframes scroll-up {
+  0% { transform: translateY(100%); opacity: 0; }
+  10% { transform: translateY(0); opacity: 1; }
+  90% { transform: translateY(0); opacity: 1; }
+  100% { transform: translateY(-100%); opacity: 0; }
 }
 
 /* ===== Scrollbar ===== */
@@ -133,9 +139,9 @@ body {
   background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  background: rgba(255, 181, 150, 0.2);
+  background: rgba(0, 212, 170, 0.2);
   border-radius: 3px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 181, 150, 0.4);
+  background: rgba(0, 212, 170, 0.4);
 }
