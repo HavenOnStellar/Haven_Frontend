@@ -6,19 +6,9 @@ import Image from 'next/image';
 import { WalletConnect } from '@/components/WalletConnect';
 import { DeviceCard } from '@/components/DeviceCard';
 import { HashPreview } from '@/components/HashPreview';
+import { DEMO_DEVICES, DEMO_ACTIVITY } from '@/app/lib/demo'
 
-const mockDevices = [
-  { id: 'dev_8f92a1b3c4', make: 'Apple', model: 'iPhone 15 Pro', color: 'Titanium', registeredAt: 'Oct 12, 2025', status: 'Active' as const },
-  { id: 'dev_3b4c5d6e7f', make: 'Samsung', model: 'Galaxy S23', color: 'Phantom Black', registeredAt: 'Jan 05, 2026', status: 'Stolen' as const, bounty: 150 },
-  { id: 'dev_1a2b3c4d5e', make: 'Google', model: 'Pixel 8', color: 'Obsidian', registeredAt: 'Mar 22, 2026', status: 'Recovered' as const },
-];
 
-const mockActivity = [
-  { id: 1, text: 'Bounty posted for Galaxy S23 ($150)', time: '2 days ago', type: 'stolen' },
-  { id: 2, text: 'Galaxy S23 reported stolen', time: '2 days ago', type: 'stolen' },
-  { id: 3, text: 'Pixel 8 registered on-chain', time: 'Mar 22, 2026', type: 'register' },
-  { id: 4, text: 'iPhone 15 Pro registered on-chain', time: 'Oct 12, 2025', type: 'register' },
-];
 
 export default function Dashboard() {
   const [isRegisterModalOpen, setRegisterModalOpen] = useState(false);
@@ -26,6 +16,11 @@ export default function Dashboard() {
   const [make, setMake] = useState('Apple');
   const [model, setModel] = useState('');
   const [color, setColor] = useState('');
+
+  const totalSecured  = DEMO_DEVICES.length;
+  const totalStolen   = DEMO_DEVICES.filter(d => d.status === 'Stolen').length;
+  const totalRecovered = DEMO_DEVICES.filter(d => d.status === 'Recovered').length;
+  const totalBounties = DEMO_DEVICES.reduce((sum, d) => sum + (d.bounty ?? 0), 0);
 
   return (
     <div className="flex-grow flex flex-col w-full relative z-10 bg-[#080c10]">
@@ -70,19 +65,19 @@ export default function Dashboard() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
           <div className="glass-panel rounded-xl p-5 border-l-2 border-[#0ea5e9]">
             <div className="text-sm font-bold uppercase tracking-wider text-slate-400 mb-2">Total Secured</div>
-            <div className="text-3xl font-bold text-white">3</div>
+            <div className="text-3xl font-bold text-white">{totalSecured}</div>
           </div>
           <div className="glass-panel rounded-xl p-5 border-l-2 border-[#f59e0b]">
             <div className="text-sm font-bold uppercase tracking-wider text-slate-400 mb-2">Currently Stolen</div>
-            <div className="text-3xl font-bold text-[#f59e0b]">1</div>
+            <div className="text-3xl font-bold text-[#f59e0b]">{totalStolen}</div>
           </div>
           <div className="glass-panel rounded-xl p-5 border-l-2 border-[#00d4aa]">
             <div className="text-sm font-bold uppercase tracking-wider text-slate-400 mb-2">Recovered</div>
-            <div className="text-3xl font-bold text-[#00d4aa]">1</div>
+            <div className="text-3xl font-bold text-[#00d4aa]">{totalRecovered}</div>
           </div>
           <div className="glass-panel rounded-xl p-5 border-l-2 border-white/20">
             <div className="text-sm font-bold uppercase tracking-wider text-slate-400 mb-2">Total Bounties Posted</div>
-            <div className="text-3xl font-bold text-white">$150</div>
+            <div className="text-3xl font-bold text-white">${totalBounties}</div>
           </div>
         </div>
 
@@ -91,7 +86,7 @@ export default function Dashboard() {
           <div className="lg:col-span-2">
             <h2 className="text-xl font-bold text-white mb-6">Registered Hardware</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-              {mockDevices.map(dev => (
+              {DEMO_DEVICES.map(dev => (
                 <DeviceCard key={dev.id} {...dev} />
               ))}
             </div>
@@ -102,9 +97,9 @@ export default function Dashboard() {
             <h2 className="text-xl font-bold text-white mb-6">Recent Activity</h2>
             <div className="glass-panel rounded-xl p-6">
               <div className="flex flex-col gap-6">
-                {mockActivity.map((activity, i) => (
+                {DEMO_ACTIVITY.map((activity, i) => (
                   <div key={activity.id} className="flex gap-4 relative">
-                    {i !== mockActivity.length - 1 && (
+                    {i !== DEMO_ACTIVITY.length - 1 && (
                       <div className="absolute top-8 left-[11px] bottom-[-24px] w-px bg-white/10" />
                     )}
                     <div className={`w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5 z-10 ${
