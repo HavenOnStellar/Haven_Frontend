@@ -4,11 +4,7 @@ import { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { WalletConnect } from '@/components/WalletConnect';
-
-const mockClaims = [
-  { id: 'clm_9a8b7c6d', deviceId: 'dev_3b4c5d6e7f', make: 'Samsung', model: 'Galaxy S23', status: 'Verified', submittedAt: 'Feb 12, 2026', insurer: 'Lemonade Insurance (GABC...XYZ)' },
-  { id: 'clm_1z2y3x4w', deviceId: 'dev_7p8q9r0s1t', make: 'Apple', model: 'iPhone 13', status: 'Paid', submittedAt: 'Nov 05, 2025', insurer: 'Allstate (GBDC...LMN)' },
-];
+import { DEMO_CLAIMS } from '@/app/lib/demo'
 
 export default function ClaimsPage() {
   const [isSubmitModalOpen, setSubmitModalOpen] = useState(false);
@@ -53,7 +49,7 @@ export default function ClaimsPage() {
         </div>
 
         <div className="space-y-6">
-          {mockClaims.map(claim => (
+          {DEMO_CLAIMS.map(claim => (
             <div key={claim.id} className="glass-panel rounded-2xl p-6 md:p-8 border border-white/5 relative overflow-hidden group hover:border-[#0ea5e9]/30 transition-colors">
               {claim.status === 'Verified' && <div className="absolute top-0 left-0 w-1 h-full bg-[#00d4aa]" />}
               {claim.status === 'Paid' && <div className="absolute top-0 left-0 w-1 h-full bg-[#10b981]" />}

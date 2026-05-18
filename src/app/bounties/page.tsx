@@ -4,19 +4,12 @@ import { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { WalletConnect } from '@/components/WalletConnect';
+import { DEMO_BOUNTIES } from '@/app/lib/demo'
 
-const initialBounties = [
-  { id: 'dev_8f92a1b3c4', make: 'Apple', model: 'iPhone 14 Pro', city: 'Lagos, NG', amount: 250, days: 2 },
-  { id: 'dev_3b4c5d6e7f', make: 'Samsung', model: 'Galaxy S23', city: 'Nairobi, KE', amount: 100, days: 5 },
-  { id: 'dev_1a2b3c4d5e', make: 'Google', model: 'Pixel 7', city: 'Bogotá, CO', amount: 150, days: 12 },
-  { id: 'dev_9z8y7x6w5v', make: 'Apple', model: 'iPhone 13', city: 'Manila, PH', amount: 80, days: 18 },
-  { id: 'dev_4u3t2s1r0q', make: 'Samsung', model: 'Galaxy Z Flip', city: 'São Paulo, BR', amount: 200, days: 24 },
-  { id: 'dev_5p6o7n8m9l', make: 'Apple', model: 'iPhone 15', city: 'Jakarta, ID', amount: 300, days: 31 },
-];
 
 export default function BountyBoard() {
-  const [bounties] = useState([...initialBounties].sort((a, b) => b.amount - a.amount));
-  const [selectedBounty, setSelectedBounty] = useState<typeof initialBounties[0] | null>(null);
+  const [bounties] = useState([...DEMO_BOUNTIES].sort((a, b) => b.amount - a.amount));
+  const [selectedBounty, setSelectedBounty] = useState<typeof DEMO_BOUNTIES[0] | null>(null);
 
   const totalBountyValue = bounties.reduce((sum, b) => sum + b.amount, 0);
 

@@ -6,6 +6,7 @@ import Image from 'next/image';
 import { useParams } from 'next/navigation';
 import { WalletConnect } from '@/components/WalletConnect';
 import { StatusBadge } from '@/components/StatusBadge';
+import { DEMO_DEVICES_BY_ID, DEMO_DEVICES } from '@/app/lib/demo'
 
 // In Next.js App Router, params are accessed asynchronously or via a hook depending on the version.
 // For client components we use useParams().
@@ -17,21 +18,14 @@ export default function ReportStolenPage() {
   const [bountyAmount, setBountyAmount] = useState(100);
   const [step, setStep] = useState<'config' | 'approving' | 'creating' | 'success'>('config');
 
-  // Mock device info
-  const device = {
-    id: deviceId || 'dev_8f92a1b3c4',
-    make: 'Apple',
-    model: 'iPhone 15 Pro',
-    color: 'Titanium',
-    registeredAt: 'Oct 12, 2025'
-  };
+  const device = DEMO_DEVICES_BY_ID[deviceId] ?? DEMO_DEVICES[0];
 
   const handleReport = () => {
     setStep('approving');
-    // Mock approve USDC
+    // TODO: replace with real USDC approve transaction via Freighter
     setTimeout(() => {
       setStep('creating');
-      // Mock create bounty transaction
+      // TODO: replace with real Soroban create_bounty call
       setTimeout(() => {
         setStep('success');
       }, 2000);
